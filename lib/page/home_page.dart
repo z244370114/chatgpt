@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage>
       }
     } else {
       _choicesModel.add(
-          Choices(message: Message(role: "assistant", content: "hello 你好")));
+          Choices(message: Message(role: "assistant", content: "Hello! Welcome to chat with me.")));
       getStorage.write("choicesModel", _choicesModel);
     }
 

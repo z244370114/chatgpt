@@ -31,42 +31,39 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(_style);
-
-    return Container(
-      child: ScreenUtilInit(
-        designSize: Size(750, 1624),
-        builder: (context, child) => MaterialApp(
-          // navigatorKey: navigatorState,
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            useMaterial3: true,
-            colorSchemeSeed: Colors.red,
-            appBarTheme: const AppBarTheme(centerTitle: true),
-          ),
-          // localizationsDelegates: const [
-          //   GlobalMaterialLocalizations.delegate,
-          //   GlobalWidgetsLocalizations.delegate,
-          //   GlobalCupertinoLocalizations.delegate,
-          //   DefaultCupertinoLocalizations.delegate,
-          // ],
-          // supportedLocales: const [
-          //   Locale('zh'),
-          //   Locale('en'),
-          // ],
-          // locale: const Locale("zh"),
-          home: homeWidget(),
-          // navigatorObservers: [TrackerRouteObserverProvider.of(context)!],
-          onGenerateRoute: (setting) {
-            Uri uri = Uri.parse(setting.name!);
-            String route = uri.path;
-            return null;
-            // switch (route) {
-            //   default:
-            //     return MaterialPageRoute(
-            //         builder: (context) => WidgetNotFound());
-            // }
-          },
+    return ScreenUtilInit(
+      designSize: const Size(750, 1624),
+      builder: (context, child) => MaterialApp(
+        // navigatorKey: navigatorState,
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: true,
+          colorSchemeSeed: Colors.red,
+          appBarTheme: const AppBarTheme(centerTitle: true),
         ),
+        // localizationsDelegates: const [
+        //   GlobalMaterialLocalizations.delegate,
+        //   GlobalWidgetsLocalizations.delegate,
+        //   GlobalCupertinoLocalizations.delegate,
+        //   DefaultCupertinoLocalizations.delegate,
+        // ],
+        // supportedLocales: const [
+        //   Locale('zh'),
+        //   Locale('en'),
+        // ],
+        // locale: const Locale("zh"),
+        home: homeWidget(),
+        // navigatorObservers: [TrackerRouteObserverProvider.of(context)!],
+        onGenerateRoute: (setting) {
+          Uri uri = Uri.parse(setting.name!);
+          String route = uri.path;
+          return null;
+          // switch (route) {
+          //   default:
+          //     return MaterialPageRoute(
+          //         builder: (context) => WidgetNotFound());
+          // }
+        },
       ),
     );
   }

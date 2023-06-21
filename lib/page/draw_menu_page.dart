@@ -47,24 +47,19 @@ class _DrawMenuPageState extends State<DrawMenuPage> {
             width: 128.w,
             height: 128.w,
           ),
+          SizedBox(height: 20.w),
           Image.asset(
             ImgUtil.getImgPath('chatgpt_bg', format: "webp"),
             fit: BoxFit.fitWidth,
             width: 380.w,
             height: 200.w,
           ),
-          Padding(
-            padding: EdgeInsets.all(18.w),
-            child: const Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.share),
-                SizedBox(width: 10),
-                Text("Share App"),
-              ],
-            ),
-          )
+          SizedBox(height: 20.w),
+          TextButton.icon(
+            onPressed: () {},
+            icon: const Icon(Icons.fiber_smart_record),
+            label: const Text('Icon'),
+          ),
         ],
       ),
     );
