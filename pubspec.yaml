@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.3 <4.0.0'
+  sdk: '>=3.0.2 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -39,7 +39,7 @@ dependencies:
   dio: ^5.2.1+1
   flutter_screenutil: ^5.8.4
 #  hive: ^2.2.3
-  dynamic_color: ^1.6.5
+#  dynamic_color: ^1.6.5
   flutter_markdown: ^0.6.15
   flustars: ^2.0.1
   get_storage: ^2.1.1

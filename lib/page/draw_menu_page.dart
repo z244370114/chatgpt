@@ -47,8 +47,14 @@ class _DrawMenuPageState extends State<DrawMenuPage> {
             width: 128.w,
             height: 128.w,
           ),
+          Image.asset(
+            ImgUtil.getImgPath('chatgpt_bg', format: "webp"),
+            fit: BoxFit.fitWidth,
+            width: 380.w,
+            height: 200.w,
+          ),
           Padding(
-            padding:  EdgeInsets.all(18.w),
+            padding: EdgeInsets.all(18.w),
             child: const Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,

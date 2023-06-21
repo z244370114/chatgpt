@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage>
           extendBodyBehindAppBar: false,
           drawerEnableOpenDragGesture: true,
           drawer: SizedBox(
-            width: 200,
+            width: 400.w,
             child: Container(
               decoration: const BoxDecoration(
                 color: Colors.white,
@@ -142,6 +142,7 @@ class _HomePageState extends State<HomePage>
   leftWidget(Message message) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Container(
           padding: EdgeInsets.fromLTRB(10.w, 10.w, 0, 0),
@@ -155,11 +156,10 @@ class _HomePageState extends State<HomePage>
             ),
           ),
         ),
-        Expanded(
+        Flexible(
           child: Container(
             margin: EdgeInsets.fromLTRB(20.w, 10.w, 94.w, 10.w),
             padding: EdgeInsets.symmetric(vertical: 20.w, horizontal: 20.w),
-            constraints: const BoxConstraints(),
             decoration: BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.all(Radius.circular(10.r))),
@@ -174,10 +174,11 @@ class _HomePageState extends State<HomePage>
 
   rightWidget(Message message) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Expanded(
+        Flexible(
           child: Container(
             margin: EdgeInsets.fromLTRB(94.w, 10.w, 20.w, 10.w),
             padding: EdgeInsets.symmetric(vertical: 20.w, horizontal: 20.w),
@@ -204,6 +205,20 @@ class _HomePageState extends State<HomePage>
         ),
       ],
     );
+  }
+
+  snackBar(content) {
+    final snackBar = SnackBar(
+      behavior: SnackBarBehavior.floating,
+      width: 400.0,
+      content: Text(content),
+      action: SnackBarAction(
+        label: 'Close',
+        onPressed: () {},
+      ),
+    );
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   sendContent() {
@@ -234,7 +249,10 @@ class _HomePageState extends State<HomePage>
         _listController.jumpTo(_listController.position.maxScrollExtent);
       });
       getStorage.write("choicesModel", _choicesModel);
-    }, onError: (code, msg) {});
+    }, onError: (code, msg) {
+      snackBar(msg);
+      getStorage.write("choicesModel", _choicesModel);
+    });
   }
 
   @override

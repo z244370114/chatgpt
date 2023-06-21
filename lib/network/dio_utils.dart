@@ -243,6 +243,7 @@ class DioUtils {
       code = ExceptionHandle.unknown_error;
       msg = '未知异常';
     }
+    onError!(code, msg);
     Log.e('接口请求异常： code: $code, mag: $msg');
   }
 
