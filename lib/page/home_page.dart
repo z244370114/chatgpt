@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Chat AI",
+          "WeChat AI",
           style: TextStyle(color: Colors.black),
         ),
         elevation: 0,
@@ -132,13 +132,13 @@ class _HomePageState extends State<HomePage>
                 focusNode: _commentFocus,
                 decoration: InputDecoration(
                   hintText: "请输入你想说的话",
-                  suffixIcon: GestureDetector(
-                    onTap: () {
+                  suffixIcon: IconButton(
+                    onPressed: () {
                       if (_etController.text == "") return;
                       sendContent();
                       _commentFocus.unfocus();
                     },
-                    child: const Icon(Icons.send),
+                    icon: const Icon(Icons.send),
                   ),
                   border: InputBorder.none,
                 ),

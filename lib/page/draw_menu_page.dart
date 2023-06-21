@@ -1,4 +1,5 @@
 import 'package:chatgpt/utils/img_util.dart';
+import 'package:chatgpt/widgets/web_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
@@ -75,16 +76,21 @@ class _DrawMenuPageState extends State<DrawMenuPage> {
           ),
           SizedBox(height: 20.w),
           TextButton.icon(
-            onPressed: () {},
-            icon: const Icon(Icons.fiber_smart_record),
-            label: const Text('Icon'),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const WebPage(title: "Privacy Agreement",)));
+            },
+            icon: const Icon(Icons.privacy_tip),
+            label: const Text('Privacy Agreement '),
           ),
           SizedBox(height: 20.w),
-          TextButton.icon(
-            onPressed: () {},
-            icon: const Icon(Icons.abc_rounded),
-            label: const Text('About Us'),
-          ),
+          // TextButton.icon(
+          //   onPressed: () {},
+          //   icon: const Icon(Icons.abc_rounded),
+          //   label: const Text('About Us'),
+          // ),
         ],
       ),
     );
