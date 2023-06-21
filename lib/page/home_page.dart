@@ -28,21 +28,29 @@ class _HomePageState extends State<HomePage>
   final _etController = TextEditingController();
   final _listController = ScrollController();
 
-  List<Choices> _choicesModel = [];
+  final List<Choices> _choicesModel = [];
 
   final getStorage = GetStorage("zyChatGpt");
+  var node = 0;
 
   @override
   void initState() {
     super.initState();
     var listItem = getStorage.read("choicesModel");
+    if (getStorage.read("node") == null) {
+      node = 0;
+    } else {
+      node = getStorage.read("node");
+    }
+
     if (listItem != null) {
       for (var item in listItem) {
         _choicesModel.add(Choices.fromJson(item));
       }
     } else {
-      _choicesModel.add(
-          Choices(message: Message(role: "assistant", content: "Hello! Welcome to chat with me.")));
+      _choicesModel.add(Choices(
+          message: Message(
+              role: "assistant", content: "Hello! Welcome to chat with me.")));
       getStorage.write("choicesModel", _choicesModel);
     }
 
@@ -72,14 +80,14 @@ class _HomePageState extends State<HomePage>
               child: const DrawMenuPage(),
             ),
           ),
-          body: bodyWidegt()),
+          body: bodyWidget()),
       onWillPop: () {
         return Future(() => true);
       },
     );
   }
 
-  bodyWidegt() {
+  bodyWidget() {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -91,6 +99,9 @@ class _HomePageState extends State<HomePage>
           onTap: () => {_homeStateKey.currentState?.openDrawer()},
           child: const Icon(Icons.menu),
         ),
+        actions: [
+          rightMenu(),
+        ],
       ),
       body: Stack(
         children: [
@@ -134,6 +145,49 @@ class _HomePageState extends State<HomePage>
               ),
             ),
           )
+        ],
+      ),
+    );
+  }
+
+  rightMenu() {
+    return Padding(
+      padding: EdgeInsets.only(right: 10.w),
+      child: MenuAnchor(
+        builder: (context, controller, child) {
+          return IconButton(
+            onPressed: () {
+              if (controller.isOpen) {
+                controller.close();
+              } else {
+                controller.open();
+              }
+            },
+            icon: const Icon(Icons.switch_access_shortcut),
+          );
+        },
+        menuChildren: [
+          MenuItemButton(
+            child: const Text('节点 1'),
+            onPressed: () {
+              getStorage.write("node", 0);
+              node = 0;
+            },
+          ),
+          MenuItemButton(
+            child: const Text('节点 2'),
+            onPressed: () {
+              getStorage.write("node", 1);
+              node = 1;
+            },
+          ),
+          MenuItemButton(
+            child: const Text('节点 3'),
+            onPressed: () {
+              getStorage.write("node", 2);
+              node = 2;
+            },
+          ),
         ],
       ),
     );
@@ -228,21 +282,22 @@ class _HomePageState extends State<HomePage>
       _listController.jumpTo(_listController.position.maxScrollExtent);
     });
 
-    var params = {
-      "model": "gpt-3.5-turbo",
-      "messages": [
-        {
-          "role": "user",
-          "content": _etController.text,
-        }
-      ],
-      "temperature": 0.7
-    };
+    // var params = {
+    //   "model": "gpt-3.5-turbo",
+    //   "messages": [
+    //     {
+    //       "role": "user",
+    //       "content": _etController.text,
+    //     }
+    //   ],
+    //   "temperature": 0.7
+    // };
+    var content =  _etController.text;
     _etController.text = "";
 
-    DioUtils.instance.requestNetwork(Method.post, ApiUrl.sendUrL,
-        params: params, onSuccess: (data) {
-      var chatModel = ChatModel.fromJson(data as Map<String, dynamic>);
+    DioUtils.instance.requestNetwork(Method.get, '${ApiUrl.sendUrL(node)}$content',
+        onSuccess: (data) {
+      var chatModel = ChatModel.fromJson(json.decode(data.toString()));
       var choices = chatModel.choices?[0];
       setState(() {
         _choicesModel.add(choices!);

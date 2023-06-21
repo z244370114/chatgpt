@@ -1,3 +1,5 @@
+import 'package:chatgpt/network/model/chat_model.dart';
+
 class EntityFactory {
   static T? generateOBJ<T>(json) {
     if (json == null) {
