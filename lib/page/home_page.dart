@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "WeChat AI",
+          "ChatGPT AI",
           style: TextStyle(color: Colors.black),
         ),
         elevation: 0,
@@ -131,7 +131,7 @@ class _HomePageState extends State<HomePage>
                 controller: _etController,
                 focusNode: _commentFocus,
                 decoration: InputDecoration(
-                  hintText: "请输入你想说的话",
+                  hintText: "Please enter what you want to say",
                   suffixIcon: IconButton(
                     onPressed: () {
                       if (_etController.text == "") return;
@@ -168,21 +168,21 @@ class _HomePageState extends State<HomePage>
         },
         menuChildren: [
           MenuItemButton(
-            child: const Text('节点 1'),
+            child: const Text('node 1'),
             onPressed: () {
               getStorage.write("node", 0);
               node = 0;
             },
           ),
           MenuItemButton(
-            child: const Text('节点 2'),
+            child: const Text('node 2'),
             onPressed: () {
               getStorage.write("node", 1);
               node = 1;
             },
           ),
           MenuItemButton(
-            child: const Text('节点 3'),
+            child: const Text('node 3'),
             onPressed: () {
               getStorage.write("node", 2);
               node = 2;
@@ -292,11 +292,11 @@ class _HomePageState extends State<HomePage>
     //   ],
     //   "temperature": 0.7
     // };
-    var content =  _etController.text;
+    var content = _etController.text;
     _etController.text = "";
 
-    DioUtils.instance.requestNetwork(Method.get, '${ApiUrl.sendUrL(node)}$content',
-        onSuccess: (data) {
+    DioUtils.instance.requestNetwork(
+        Method.get, '${ApiUrl.sendUrL(node)}$content', onSuccess: (data) {
       var chatModel = ChatModel.fromJson(json.decode(data.toString()));
       var choices = chatModel.choices?[0];
       setState(() {

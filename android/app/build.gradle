@@ -95,7 +95,7 @@ android {
         variant ->
             variant.outputs.all {
                 //在这里修改apk文件名
-                outputFileName = "wechat-ai-v${variant.versionName}-release.apk"
+                outputFileName = "chatgpt-ai-v${variant.versionName}-release.apk"
             }
     }
 
