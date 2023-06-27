@@ -115,46 +115,43 @@ class _HomePageState extends State<HomePage>
           rightMenu(),
         ],
       ),
-      body: Stack(
+      body: Column(
         children: [
-          ListView.builder(
-            shrinkWrap: true,
-            controller: _listController,
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 120.w),
-            itemCount: _choicesModel.length,
-            scrollDirection: Axis.vertical,
-            itemBuilder: (BuildContext context, int index) {
-              final item = _choicesModel[index];
-              if (item.message?.role == "user") {
-                return rightWidget(item.message!);
-              } else {
-                return leftWidget(item.message!);
-              }
-            },
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              controller: _listController,
+              padding: const EdgeInsets.all(0),
+              itemCount: _choicesModel.length,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (BuildContext context, int index) {
+                final item = _choicesModel[index];
+                if (item.message?.role == "user") {
+                  return rightWidget(item.message!);
+                } else {
+                  return leftWidget(item.message!);
+                }
+              },
+            ),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              color: Colors.white,
-              height: 120.w,
-              padding: EdgeInsets.fromLTRB(24.w, 10.w, 10.w, 10.w),
-              child: TextField(
-                controller: _etController,
-                focusNode: _commentFocus,
-                decoration: InputDecoration(
-                  hintText: S.of(context).inputHit,
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      if (_etController.text == "") return;
-                      sendContent();
-                      _commentFocus.unfocus();
-                    },
-                    icon: Icon(sendLoading ? Icons.send : Icons.send_outlined),
-                  ),
-                  border: InputBorder.none,
+          Container(
+            color: Colors.white,
+            height: 120.w,
+            padding: EdgeInsets.fromLTRB(24.w, 10.w, 10.w, 10.w),
+            child: TextField(
+              controller: _etController,
+              focusNode: _commentFocus,
+              decoration: InputDecoration(
+                hintText: S.of(context).inputHit,
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    if (_etController.text == "") return;
+                    sendContent();
+                    _commentFocus.unfocus();
+                  },
+                  icon: Icon(sendLoading ? Icons.send : Icons.send_outlined),
                 ),
+                border: InputBorder.none,
               ),
             ),
           )
@@ -317,8 +314,8 @@ class _HomePageState extends State<HomePage>
       setState(() {
         sendLoading = true;
         Timer.periodic(const Duration(milliseconds: 200), (timer) {
-            _listController.jumpTo(_listController.position.maxScrollExtent);
-            timer.cancel();
+          _listController.jumpTo(_listController.position.maxScrollExtent);
+          timer.cancel();
         });
       });
       getStorage.write("choicesModel", _choicesModel);
