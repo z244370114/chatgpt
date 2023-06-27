@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:ui';
 
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../generated/l10n.dart';
 import '../utils/img_util.dart';
 import '../widgets/markdown/markdown_widget.dart';
 
@@ -32,10 +34,23 @@ class _HomePageState extends State<HomePage>
 
   final getStorage = GetStorage("zyChatGpt");
   var node = 0;
+  var sendLoading = true;
 
   @override
   void initState() {
     super.initState();
+    _listController.addListener(() {
+      _commentFocus.unfocus();
+    });
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _listController.jumpTo(_listController.position.maxScrollExtent);
+    });
+
+    initListItem();
+  }
+
+  void initListItem() {
     var listItem = getStorage.read("choicesModel");
     if (getStorage.read("node") == null) {
       node = 0;
@@ -53,12 +68,6 @@ class _HomePageState extends State<HomePage>
               role: "assistant", content: "Hello! Welcome to chat with me.")));
       getStorage.write("choicesModel", _choicesModel);
     }
-
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if (_listController.position != null) {
-        _listController.jumpTo(_listController.position.maxScrollExtent);
-      }
-    });
   }
 
   @override
@@ -90,13 +99,16 @@ class _HomePageState extends State<HomePage>
   bodyWidget() {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "ChatGPT AI",
-          style: TextStyle(color: Colors.black),
+        title: Text(
+          S.of(context).title,
+          style: const TextStyle(color: Colors.black),
         ),
         elevation: 0,
         leading: GestureDetector(
-          onTap: () => {_homeStateKey.currentState?.openDrawer()},
+          onTap: () {
+            _commentFocus.unfocus();
+            _homeStateKey.currentState?.openDrawer();
+          },
           child: const Icon(Icons.menu),
         ),
         actions: [
@@ -106,6 +118,7 @@ class _HomePageState extends State<HomePage>
       body: Stack(
         children: [
           ListView.builder(
+            shrinkWrap: true,
             controller: _listController,
             padding: EdgeInsets.fromLTRB(0, 0, 0, 120.w),
             itemCount: _choicesModel.length,
@@ -131,14 +144,14 @@ class _HomePageState extends State<HomePage>
                 controller: _etController,
                 focusNode: _commentFocus,
                 decoration: InputDecoration(
-                  hintText: "Please enter what you want to say",
+                  hintText: S.of(context).inputHit,
                   suffixIcon: IconButton(
                     onPressed: () {
                       if (_etController.text == "") return;
                       sendContent();
                       _commentFocus.unfocus();
                     },
-                    icon: const Icon(Icons.send),
+                    icon: Icon(sendLoading ? Icons.send : Icons.send_outlined),
                   ),
                   border: InputBorder.none,
                 ),
@@ -168,21 +181,21 @@ class _HomePageState extends State<HomePage>
         },
         menuChildren: [
           MenuItemButton(
-            child: const Text('node 1'),
+            child: Text('${S.of(context).netWorkNode} 1'),
             onPressed: () {
               getStorage.write("node", 0);
               node = 0;
             },
           ),
           MenuItemButton(
-            child: const Text('node 2'),
+            child: Text('${S.of(context).netWorkNode} 2'),
             onPressed: () {
               getStorage.write("node", 1);
               node = 1;
             },
           ),
           MenuItemButton(
-            child: const Text('node 3'),
+            child: Text('${S.of(context).netWorkNode} 3'),
             onPressed: () {
               getStorage.write("node", 2);
               node = 2;
@@ -277,6 +290,7 @@ class _HomePageState extends State<HomePage>
 
   sendContent() {
     setState(() {
+      sendLoading = false;
       _choicesModel.add(
           Choices(message: Message(role: "user", content: _etController.text)));
       _listController.jumpTo(_listController.position.maxScrollExtent);
@@ -299,12 +313,19 @@ class _HomePageState extends State<HomePage>
         Method.get, '${ApiUrl.sendUrL(node)}$content', onSuccess: (data) {
       var chatModel = ChatModel.fromJson(json.decode(data.toString()));
       var choices = chatModel.choices?[0];
+      _choicesModel.add(choices!);
       setState(() {
-        _choicesModel.add(choices!);
-        _listController.jumpTo(_listController.position.maxScrollExtent);
+        sendLoading = true;
+        Timer.periodic(const Duration(milliseconds: 200), (timer) {
+            _listController.jumpTo(_listController.position.maxScrollExtent);
+            timer.cancel();
+        });
       });
       getStorage.write("choicesModel", _choicesModel);
     }, onError: (code, msg) {
+      setState(() {
+        sendLoading = true;
+      });
       snackBar(msg);
       getStorage.write("choicesModel", _choicesModel);
     });

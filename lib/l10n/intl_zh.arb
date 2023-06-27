@@ -1,0 +1,13 @@
+{
+  "title": "Ai 聊天",
+  "sayHello": "你好！欢迎与我聊天。",
+  "netWorkNode": "网络节点",
+  "useKey": "使用您自己的密钥",
+  "privacyAgreement": "隐私协议",
+  "inputHit": "请输入您想说的话",
+  "prompt": "提示",
+  "ok": "确定",
+  "skipKeyUrl": "获取KEY地址",
+  "myselfKey": "请输入您的KEY",
+  "close": "关闭"
+}

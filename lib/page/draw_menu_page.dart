@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../generated/l10n.dart';
 import '../network/api_url.dart';
 import '../network/dio_utils.dart';
 
@@ -52,12 +53,16 @@ class _DrawMenuPageState extends State<DrawMenuPage> {
               .padding
               .top),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(
-            ImgUtil.getImgPath('chatgpt_logo'),
-            fit: BoxFit.cover,
-            width: 128.w,
-            height: 128.w,
+          Container(
+            alignment: Alignment.center,
+            child: Image.asset(
+              ImgUtil.getImgPath('chatgpt_logo'),
+              fit: BoxFit.cover,
+              width: 128.w,
+              height: 128.w,
+            ),
           ),
           SizedBox(height: 20.w),
           Image.asset(
@@ -72,7 +77,7 @@ class _DrawMenuPageState extends State<DrawMenuPage> {
               openDialog(context);
             },
             icon: const Icon(Icons.update_sharp),
-            label: const Text('Use your own key'),
+            label: Text(S.of(context).useKey),
           ),
           SizedBox(height: 20.w),
           TextButton.icon(
@@ -80,10 +85,12 @@ class _DrawMenuPageState extends State<DrawMenuPage> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const WebPage(title: "Privacy Agreement",)));
+                      builder: (context) => WebPage(
+                            title: S.of(context).privacyAgreement,
+                          )));
             },
             icon: const Icon(Icons.privacy_tip),
-            label: const Text('Privacy Agreement '),
+            label: Text(S.of(context).privacyAgreement),
           ),
           SizedBox(height: 20.w),
           // TextButton.icon(
@@ -100,32 +107,38 @@ class _DrawMenuPageState extends State<DrawMenuPage> {
     showDialog<void>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('User key'),
+        title: Text(S.of(context).prompt),
         content: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TextField(
               controller: _controllerKey,
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.key),
-                hintText: 'Please enter your own key',
+              decoration: InputDecoration(
                 filled: true,
+                fillColor: Colors.transparent,
+                border: OutlineInputBorder(),
+                prefixIcon: const Icon(Icons.key),
+                hintText: S.of(context).myselfKey,
+                hintStyle: TextStyle(
+                  fontSize: 24.sp,
+                ),
               ),
             ),
             TextButton(
               onPressed: () {
                 launchUrl(_url);
               },
-              child: const Text(
-                "Go to the registration key",
-                style: TextStyle(decoration: TextDecoration.underline),
+              child: Text(
+                S.of(context).skipKeyUrl,
+                style: const TextStyle(decoration: TextDecoration.underline),
               ),
             ),
           ],
         ),
         actions: <Widget>[
           FilledButton(
-            child: const Text('Okay'),
+            child: Text(S.of(context).ok),
             onPressed: () {
               var content = _controllerKey.text;
               if (content.contains("sk")) {
@@ -137,7 +150,7 @@ class _DrawMenuPageState extends State<DrawMenuPage> {
             },
           ),
           TextButton(
-            child: const Text('Dismiss'),
+            child: Text(S.of(context).close),
             onPressed: () => Navigator.of(context).pop(),
           ),
         ],

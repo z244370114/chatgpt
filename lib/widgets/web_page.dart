@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
@@ -23,6 +22,7 @@ class _WebPageState extends State<WebPage> {
   @override
   void initState() {
     super.initState();
+    _title = widget.title;
 
     late PlatformWebViewControllerCreationParams params =
         const PlatformWebViewControllerCreationParams();
@@ -44,9 +44,7 @@ class _WebPageState extends State<WebPage> {
           onPageFinished: (String url) {
             debugPrint('Page finished loading: $url');
           },
-          onWebResourceError: (WebResourceError error) {
-
-          },
+          onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {
             if (request.url.startsWith('https://www.youtube.com/')) {
               debugPrint('blocking navigation to ${request.url}');
@@ -69,7 +67,7 @@ class _WebPageState extends State<WebPage> {
         },
       )
       ..loadFlutterAsset("assets/privacy.html");
-      // ..loadRequest(Uri.parse('https://flutter.dev'));
+    // ..loadRequest(Uri.parse('https://flutter.dev'));
 
     if (controller.platform is AndroidWebViewController) {
       AndroidWebViewController.enableDebugging(true);

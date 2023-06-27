@@ -1,0 +1,13 @@
+{
+  "title": "Chat Ai",
+  "sayHello": "Hello! Welcome to chat with me.",
+  "netWorkNode": "NetWork node",
+  "useKey": "Use your own key",
+  "privacyAgreement": "Privacy agreement",
+  "inputHit": "Please enter what you want to say",
+  "prompt": "prompt",
+  "ok": "Ok",
+  "skipKeyUrl": "Go to the registration key",
+  "myselfKey": "Please enter your own key",
+  "close": "Dississ"
+}

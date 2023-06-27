@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_storage/get_storage.dart';
 
+import '../generated/l10n.dart';
+import '../network/model/chat_model.dart';
 import 'home_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -19,6 +22,8 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark,
   );
+
+  final getStorage = GetStorage("zyChatGpt");
 
   @override
   void initState() {
@@ -38,31 +43,21 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: true,
-          colorSchemeSeed: Colors.red,
+          colorSchemeSeed: Colors.purple,
           appBarTheme: const AppBarTheme(centerTitle: true),
         ),
-        // localizationsDelegates: const [
-        //   GlobalMaterialLocalizations.delegate,
-        //   GlobalWidgetsLocalizations.delegate,
-        //   GlobalCupertinoLocalizations.delegate,
-        //   DefaultCupertinoLocalizations.delegate,
-        // ],
-        // supportedLocales: const [
-        //   Locale('zh'),
-        //   Locale('en'),
-        // ],
-        // locale: const Locale("zh"),
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          S.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
         home: homeWidget(),
-        // navigatorObservers: [TrackerRouteObserverProvider.of(context)!],
         onGenerateRoute: (setting) {
           Uri uri = Uri.parse(setting.name!);
           String route = uri.path;
           return null;
-          // switch (route) {
-          //   default:
-          //     return MaterialPageRoute(
-          //         builder: (context) => WidgetNotFound());
-          // }
         },
       ),
     );
