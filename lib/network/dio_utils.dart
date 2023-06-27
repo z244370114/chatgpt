@@ -23,7 +23,8 @@ class DioUtils {
 
   static bool _isProduct = true;
 
-  static String _apiBaseUrl = "https://openai.api.firefix.cn";
+  // static String _apiBaseUrl = "https://openai.api.firefix.cn";
+  static String _apiBaseUrl = "https://api.openai.com";
 
   static String? _customHost;
 

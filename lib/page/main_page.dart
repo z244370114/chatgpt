@@ -41,17 +41,17 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
           colorSchemeSeed: Colors.red,
           appBarTheme: const AppBarTheme(centerTitle: true),
         ),
-        // localizationsDelegates: const [
-        //   GlobalMaterialLocalizations.delegate,
-        //   GlobalWidgetsLocalizations.delegate,
-        //   GlobalCupertinoLocalizations.delegate,
-        //   DefaultCupertinoLocalizations.delegate,
-        // ],
-        // supportedLocales: const [
-        //   Locale('zh'),
-        //   Locale('en'),
-        // ],
-        // locale: const Locale("zh"),
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          DefaultCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('en', 'US'), //英文
+          Locale('zh', 'CH'), //中文
+        ],
+        locale: const Locale('en', 'US'),
         home: homeWidget(),
         // navigatorObservers: [TrackerRouteObserverProvider.of(context)!],
         onGenerateRoute: (setting) {
