@@ -313,9 +313,8 @@ class _HomePageState extends State<HomePage>
       _choicesModel.add(choices!);
       setState(() {
         sendLoading = true;
-        Timer.periodic(const Duration(milliseconds: 200), (timer) {
+        Future.delayed(const Duration(milliseconds: 200), () {
           _listController.jumpTo(_listController.position.maxScrollExtent);
-          timer.cancel();
         });
       });
       getStorage.write("choicesModel", _choicesModel);

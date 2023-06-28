@@ -22,7 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "close": MessageLookupByLibrary.simpleMessage("Dississ"),
+        "clearCache": MessageLookupByLibrary.simpleMessage("Empty the cache"),
+        "close": MessageLookupByLibrary.simpleMessage("Close"),
         "inputHit": MessageLookupByLibrary.simpleMessage(
             "Please enter what you want to say"),
         "myselfKey":

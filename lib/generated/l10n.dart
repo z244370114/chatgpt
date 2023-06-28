@@ -150,11 +150,21 @@ class S {
     );
   }
 
-  /// `Dississ`
+  /// `Close`
   String get close {
     return Intl.message(
-      'Dississ',
+      'Close',
       name: 'close',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Empty the cache`
+  String get clearCache {
+    return Intl.message(
+      'Empty the cache',
+      name: 'clearCache',
       desc: '',
       args: [],
     );

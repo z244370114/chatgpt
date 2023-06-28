@@ -9,5 +9,6 @@
   "ok": "确定",
   "skipKeyUrl": "获取KEY地址",
   "myselfKey": "请输入您的KEY",
-  "close": "关闭"
+  "close": "关闭",
+  "clearCache": "清空缓存"
 }

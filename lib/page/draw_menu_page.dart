@@ -93,6 +93,14 @@ class _DrawMenuPageState extends State<DrawMenuPage> {
             label: Text(S.of(context).privacyAgreement),
           ),
           SizedBox(height: 20.w),
+          TextButton.icon(
+            onPressed: () {
+
+            },
+            icon: const Icon(Icons.cleaning_services_rounded),
+            label: Text(S.of(context).clearCache),
+          ),
+          SizedBox(height: 20.w),
           // TextButton.icon(
           //   onPressed: () {},
           //   icon: const Icon(Icons.abc_rounded),

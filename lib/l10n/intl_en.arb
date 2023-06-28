@@ -9,5 +9,6 @@
   "ok": "Ok",
   "skipKeyUrl": "Go to the registration key",
   "myselfKey": "Please enter your own key",
-  "close": "Dississ"
+  "close": "Close",
+  "clearCache": "Empty the cache"
 }
