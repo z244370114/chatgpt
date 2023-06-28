@@ -94,9 +94,7 @@ class _DrawMenuPageState extends State<DrawMenuPage> {
           ),
           SizedBox(height: 20.w),
           TextButton.icon(
-            onPressed: () {
-
-            },
+            onPressed: () {},
             icon: const Icon(Icons.cleaning_services_rounded),
             label: Text(S.of(context).clearCache),
           ),
@@ -167,8 +165,9 @@ class _DrawMenuPageState extends State<DrawMenuPage> {
   }
 
   saveKey() {
-    DioUtils.instance.requestNetwork(
-        Method.get, "${ApiUrl.saveKey}${_controllerKey.text}",
-        onSuccess: (data) {}, onError: (code, msg) {});
+    DioUtils.instance.requestNetwork(Method.get, ApiUrl.saveKey,
+        queryParameters: {'key': _controllerKey.text},
+        onSuccess: (data) {},
+        onError: (code, msg) {});
   }
 }

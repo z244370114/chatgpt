@@ -303,11 +303,20 @@ class _HomePageState extends State<HomePage>
     //   ],
     //   "temperature": 0.7
     // };
+
+    // model=
+    // imageType=url
+    // type=1
     var content = _etController.text;
+    var params = {
+      "route": node,
+      "key": getStorage.read("chatGptKey") ?? "",
+      "content": content,
+    };
     _etController.text = "";
 
-    DioUtils.instance.requestNetwork(
-        Method.get, '${ApiUrl.sendUrL(node)}$content', onSuccess: (data) {
+    DioUtils.instance.requestNetwork(Method.get, ApiUrl.sendUrL,
+        queryParameters: params, onSuccess: (data) {
       var chatModel = ChatModel.fromJson(json.decode(data.toString()));
       var choices = chatModel.choices?[0];
       _choicesModel.add(choices!);
