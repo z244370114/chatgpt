@@ -1,12 +1,12 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:umeng_common_sdk/umeng_common_sdk.dart';
 
 import '../generated/l10n.dart';
-import '../network/model/chat_model.dart';
 import 'home_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -63,9 +63,12 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
     );
   }
 
-  void init() {}
+  void init() {
+
+  }
 
   homeWidget() {
     return const HomePage();
   }
+
 }

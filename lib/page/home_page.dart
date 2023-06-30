@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:ui';
 
 import 'package:chatgpt/network/api_url.dart';
 import 'package:chatgpt/network/dio_utils.dart';
@@ -10,10 +9,12 @@ import 'package:chatgpt/resoure/zcolor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:umeng_common_sdk/umeng_common_sdk.dart';
 
 import '../generated/l10n.dart';
 import '../utils/img_util.dart';
 import '../widgets/markdown/markdown_widget.dart';
+import '../widgets/privacy_policy_dialog.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage>
-    with AutomaticKeepAliveClientMixin {
+    with AutomaticKeepAliveClientMixin, WidgetsBindingObserver {
   final GlobalKey<ScaffoldState> _homeStateKey = GlobalKey<ScaffoldState>();
 
   final _commentFocus = FocusNode();
@@ -45,6 +46,13 @@ class _HomePageState extends State<HomePage>
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _listController.jumpTo(_listController.position.maxScrollExtent);
+      if (getStorage.read("isShowPrivacy") == null ||
+          !getStorage.read("isShowPrivacy")) {
+        showPrivacyPolicyDialog(context);
+      } else {
+        UmengCommonSdk.initCommon(
+            '649e6457a1a164591b3e7ed7', '649e6457a1a164591b3e7ed7', 'huawei');
+      }
     });
 
     initListItem();
@@ -86,7 +94,11 @@ class _HomePageState extends State<HomePage>
               decoration: const BoxDecoration(
                 color: Colors.white,
               ),
-              child: const DrawMenuPage(),
+              child: DrawMenuPage(onClick: () {
+                setState(() {
+                  _choicesModel.clear();
+                });
+              }),
             ),
           ),
           body: bodyWidget()),
@@ -338,4 +350,19 @@ class _HomePageState extends State<HomePage>
 
   @override
   bool get wantKeepAlive => true;
+
+  void showPrivacyPolicyDialog(BuildContext context) async {
+    bool result = await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const PrivacyPolicyDialog();
+      },
+    );
+    if (result == true) {
+      getStorage.write("isShowPrivacy", true);
+      UmengCommonSdk.initCommon(
+          '649e6457a1a164591b3e7ed7', '649e6457a1a164591b3e7ed7', 'huawei');
+    }
+  }
 }

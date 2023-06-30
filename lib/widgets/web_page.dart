@@ -18,11 +18,14 @@ class _WebPageState extends State<WebPage> {
   bool isError = false;
 
   String? _title = '';
+  String? _url ='';
 
   @override
   void initState() {
     super.initState();
     _title = widget.title;
+    _url = widget.url;
+
 
     late PlatformWebViewControllerCreationParams params =
         const PlatformWebViewControllerCreationParams();
@@ -66,7 +69,7 @@ class _WebPageState extends State<WebPage> {
           );
         },
       )
-      ..loadFlutterAsset("assets/privacy.html");
+      ..loadFlutterAsset(_url!);
     // ..loadRequest(Uri.parse('https://flutter.dev'));
 
     if (controller.platform is AndroidWebViewController) {

@@ -169,6 +169,66 @@ class S {
       args: [],
     );
   }
+
+  /// `agree`
+  String get agree {
+    return Intl.message(
+      'agree',
+      name: 'agree',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User Agreement`
+  String get userAgreement {
+    return Intl.message(
+      'User Agreement',
+      name: 'userAgreement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please read carefully before using the Chat Robot-AI service`
+  String get user1 {
+    return Intl.message(
+      'Please read carefully before using the Chat Robot-AI service',
+      name: 'user1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `, after you agree and accept all the terms before starting to use our services, we hereby explain to you as follows:`
+  String get user2 {
+    return Intl.message(
+      ', after you agree and accept all the terms before starting to use our services, we hereby explain to you as follows:',
+      name: 'user2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1. In order to provide you with basic functions related to login, we will collect and use necessary information; 2. Based on your express authorization, we may obtain your mobile phone number, SMS (to provide you with login function), device number information (to ensure the security of your account), camera album (to upload personal avatars and pictures) and other information, and you have the right to refuse or cancel authorization; 3. We will take industry-advanced security measures to protect your information security; 4. We will not obtain, share or provide your information from third parties without your consent; 5. You can inquire, correct and delete your personal information, and we also provide channels for account cancellation.`
+  String get user3 {
+    return Intl.message(
+      '1. In order to provide you with basic functions related to login, we will collect and use necessary information; 2. Based on your express authorization, we may obtain your mobile phone number, SMS (to provide you with login function), device number information (to ensure the security of your account), camera album (to upload personal avatars and pictures) and other information, and you have the right to refuse or cancel authorization; 3. We will take industry-advanced security measures to protect your information security; 4. We will not obtain, share or provide your information from third parties without your consent; 5. You can inquire, correct and delete your personal information, and we also provide channels for account cancellation.',
+      name: 'user3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `and`
+  String get and {
+    return Intl.message(
+      'and',
+      name: 'and',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

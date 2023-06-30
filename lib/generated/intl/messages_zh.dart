@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "agree": MessageLookupByLibrary.simpleMessage("同意"),
+        "and": MessageLookupByLibrary.simpleMessage("和"),
         "clearCache": MessageLookupByLibrary.simpleMessage("清空缓存"),
         "close": MessageLookupByLibrary.simpleMessage("关闭"),
         "inputHit": MessageLookupByLibrary.simpleMessage("请输入您想说的话"),
@@ -33,6 +35,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "sayHello": MessageLookupByLibrary.simpleMessage("你好！欢迎与我聊天。"),
         "skipKeyUrl": MessageLookupByLibrary.simpleMessage("获取KEY地址"),
         "title": MessageLookupByLibrary.simpleMessage("Ai 聊天"),
-        "useKey": MessageLookupByLibrary.simpleMessage("使用您自己的密钥")
+        "useKey": MessageLookupByLibrary.simpleMessage("使用您自己的密钥"),
+        "user1":
+            MessageLookupByLibrary.simpleMessage("在您使用ChatRobot-AI服务之前，请认真阅读"),
+        "user2": MessageLookupByLibrary.simpleMessage(
+            ",在您同意并接受全部条款后再开始使用我们的服务，特向您说明如下："),
+        "user3": MessageLookupByLibrary.simpleMessage(
+            "1.为向您提供登录相关基本功能，我们会收集、使用必要的信息；\n2.基于您的明示授权，我们可能会获取您的手机号、短信（为您提供登录功能）、设备号信息（以保障您账号安全）、相机相册（用与上传个人头像和图片）等信息，您有权拒绝或取消授权；\n3.我们会采取业界先进安全措施保护您的信息安全；\n4.未经您同意，我们不会从第三方处获取、共享或向其提供您的信息；\n5.您可以查询、更正、删除您的个人信息，我们也提供账户注销的渠道。"),
+        "userAgreement": MessageLookupByLibrary.simpleMessage("用户协议")
       };
 }

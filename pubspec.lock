@@ -474,6 +474,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.3.2"
+  umeng_common_sdk:
+    dependency: "direct main"
+    description:
+      name: umeng_common_sdk
+      sha256: fce28065224b0839ffc16b5003d2295dae8aabee290bf639f978536b32ed601d
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.2.6"
   url_launcher:
     dependency: "direct main"
     description:

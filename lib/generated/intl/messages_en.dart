@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "agree": MessageLookupByLibrary.simpleMessage("agree"),
+        "and": MessageLookupByLibrary.simpleMessage("and"),
         "clearCache": MessageLookupByLibrary.simpleMessage("Empty the cache"),
         "close": MessageLookupByLibrary.simpleMessage("Close"),
         "inputHit": MessageLookupByLibrary.simpleMessage(
@@ -38,6 +40,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "skipKeyUrl":
             MessageLookupByLibrary.simpleMessage("Go to the registration key"),
         "title": MessageLookupByLibrary.simpleMessage("Chat Ai"),
-        "useKey": MessageLookupByLibrary.simpleMessage("Use your own key")
+        "useKey": MessageLookupByLibrary.simpleMessage("Use your own key"),
+        "user1": MessageLookupByLibrary.simpleMessage(
+            "Please read carefully before using the Chat Robot-AI service"),
+        "user2": MessageLookupByLibrary.simpleMessage(
+            ", after you agree and accept all the terms before starting to use our services, we hereby explain to you as follows:"),
+        "user3": MessageLookupByLibrary.simpleMessage(
+            "1. In order to provide you with basic functions related to login, we will collect and use necessary information; 2. Based on your express authorization, we may obtain your mobile phone number, SMS (to provide you with login function), device number information (to ensure the security of your account), camera album (to upload personal avatars and pictures) and other information, and you have the right to refuse or cancel authorization; 3. We will take industry-advanced security measures to protect your information security; 4. We will not obtain, share or provide your information from third parties without your consent; 5. You can inquire, correct and delete your personal information, and we also provide channels for account cancellation."),
+        "userAgreement": MessageLookupByLibrary.simpleMessage("User Agreement")
       };
 }

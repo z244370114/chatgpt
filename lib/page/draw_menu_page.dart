@@ -10,7 +10,12 @@ import '../network/api_url.dart';
 import '../network/dio_utils.dart';
 
 class DrawMenuPage extends StatefulWidget {
-  const DrawMenuPage({Key? key}) : super(key: key);
+  final Function onClick;
+
+  const DrawMenuPage({
+    Key? key,
+    required this.onClick,
+  }) : super(key: key);
 
   @override
   _DrawMenuPageState createState() => _DrawMenuPageState();
@@ -94,7 +99,11 @@ class _DrawMenuPageState extends State<DrawMenuPage> {
           ),
           SizedBox(height: 20.w),
           TextButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              getStorage.remove('choicesModel');
+              widget.onClick();
+              Navigator.of(context).pop();
+            },
             icon: const Icon(Icons.cleaning_services_rounded),
             label: Text(S.of(context).clearCache),
           ),
