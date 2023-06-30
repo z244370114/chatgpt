@@ -82,7 +82,7 @@ class PrivacyPolicyDialog extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) => WebPage(
                                         title: S.of(context).privacyAgreement,
-                                        url: "assets/privacy_en.html",
+                                        url: "assets/privacy_zh.html",
                                       )));
                         }),
                   TextSpan(

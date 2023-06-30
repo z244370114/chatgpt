@@ -92,6 +92,7 @@ class _DrawMenuPageState extends State<DrawMenuPage> {
                   MaterialPageRoute(
                       builder: (context) => WebPage(
                             title: S.of(context).privacyAgreement,
+                            url: "assets/privacy_en.html",
                           )));
             },
             icon: const Icon(Icons.privacy_tip),
