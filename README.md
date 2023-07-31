@@ -5,6 +5,9 @@ A large language model trained by OpenAI that can be used to answer questions in
 ## Getting Started
 应用截图
 
+## The app download address：
+[https://play.google.com/store/apps/details?id=com.fast.ai.chat](https://play.google.com/store/apps/details?id=com.fast.ai.chat)
+
 
 ![1](./assets/images/1.png)
 ![2](./assets/images/2.png)
