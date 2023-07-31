@@ -305,30 +305,30 @@ class _HomePageState extends State<HomePage>
       _listController.jumpTo(_listController.position.maxScrollExtent);
     });
 
-    // var params = {
-    //   "model": "gpt-3.5-turbo",
-    //   "messages": [
-    //     {
-    //       "role": "user",
-    //       "content": _etController.text,
-    //     }
-    //   ],
-    //   "temperature": 0.7
-    // };
+    var params = {
+      "model": "gpt-3.5-turbo",
+      "messages": [
+        {
+          "role": "user",
+          "content": _etController.text,
+        }
+      ],
+      "temperature": 0.7
+    };
 
     // model=
     // imageType=url
     // type=1
     var content = _etController.text;
-    var params = {
-      "route": node,
-      "key": getStorage.read("chatGptKey") ?? "",
-      "content": content,
-    };
+    // var params = {
+    //   "route": node,
+    //   "key": getStorage.read("chatGptKey") ?? "",
+    //   "content": content,
+    // };
     _etController.text = "";
 
-    DioUtils.instance.requestNetwork(Method.get, ApiUrl.sendUrL,
-        queryParameters: params, onSuccess: (data) {
+    DioUtils.instance.requestNetwork(Method.post, ApiUrl.sendUrL,
+        params: params, onSuccess: (data) {
       var chatModel = ChatModel.fromJson(json.decode(data.toString()));
       var choices = chatModel.choices?[0];
       _choicesModel.add(choices!);

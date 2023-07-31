@@ -8,7 +8,8 @@ class AuthInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     options.headers['Authorization'] =
-        'Bearer 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';
+        'Bearer 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';
+        // 'Bearer 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';
     options.headers['Content-Type'] = 'application/json';
 
     super.onRequest(options, handler);
