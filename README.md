@@ -1,21 +1,13 @@
 # chatgpt
 
-A new Flutter project.
+A large language model trained by OpenAI that can be used to answer questions in different domai
 
 ## Getting Started
+应用截图
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
 
 ![1](./assets/images/1.png)
 ![2](./assets/images/2.png)
 ![3](./assets/images/3.png)
 ![4](./assets/images/4.png)
+
