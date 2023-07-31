@@ -11,6 +11,7 @@ A large language model trained by OpenAI that can be used to answer questions in
 [https://play.google.com/store/apps/details?id=com.fast.ai.chat](https://play.google.com/store/apps/details?id=com.fast.ai.chat)
 
 | ![1](./assets/images/1.png)| ![2](./assets/images/2.png)|  ![3](./assets/images/3.png)
-|  ![4](./assets/images/4.png)| 
+| ![4](./assets/images/4.png)|
+| --- | --- | --- | --- | --- |
 
 
