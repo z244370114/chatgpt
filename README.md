@@ -16,7 +16,7 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 
-<img alt="1" height="400" src="../assets/images/1.png" width="400"/>
-<img alt="2" height="400" src="../assets/images/2.png" width="400"/>
-<img alt="3" height="400" src="../assets/images/3.png" width="400"/>
-<img alt="4" height="400" src="../assets/images/4.png" width="400"/>
+<img alt="1" height="400" src="./assets/images/1.png" width="400"/>
+<img alt="2" height="400" src="./assets/images/2.png" width="400"/>
+<img alt="3" height="400" src="./assets/images/3.png" width="400"/>
+<img alt="4" height="400" src="./assets/images/4.png" width="400"/>
