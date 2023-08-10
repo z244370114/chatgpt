@@ -8,7 +8,7 @@ A large language model trained by OpenAI that can be used to answer questions in
 
 ## The app download address：
 
-[https://play.google.com/store/apps/details?id=com.fast.ai.chat](https://play.google.com/store/apps/details?id=com.fast.ai.chat)
+[https://play.google.com/store/apps/details?id=com.waiting.ai.chatbot](https://play.google.com/store/apps/details?id=com.waiting.ai.chatbot)
 
 | ![](./assets/images/1.png)	 | ![](./assets/images/2.png)	 | ![](./assets/images/3.png) | ![](./assets/images/4.png)	 | 
 |-----------------------------|-----------------------------|----------------------------|-----------------------------|
